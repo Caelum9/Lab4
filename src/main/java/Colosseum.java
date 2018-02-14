@@ -74,7 +74,14 @@ public class Colosseum {
     public static Pokemon buildPokemon() {
         Pokemon tempPokemon = new Pokemon();
         System.out.println("Please name your Pokemon: ");
-        tempPokemon.name = myScan.next();
+        //tempPokemon.name = myScan.nextLine();
+        System.out.println();
+        tempPokemon.name = myScan.nextLine();
+
+        //using next() instead of nextLine() here,
+        // because of the computer problem, one of them will work
+        // and another will not work.
+
         System.out.println("How many hit points will it have? (1-50): ");
         tempPokemon.hitPoints = myScan.nextInt();
         while (tempPokemon.hitPoints < 0 || tempPokemon.hitPoints > MAX_HIT_POINTS) {
@@ -82,11 +89,13 @@ public class Colosseum {
             tempPokemon.hitPoints = myScan.nextInt();
         }
         //tempPokemon.hitPoints = hitpoints;
+
         System.out.println("Split fifty points between attack level and defense level");
         System.out.println("Enter your attack level (1-" + (tempPokemon.hitPoints - 1) + "): ");
         int attacklevel = myScan.nextInt();
         while (attacklevel < 1 || attacklevel > tempPokemon.hitPoints - 1) {
-            System.out.println("Sorry. The attack level must be between 1 and " + (tempPokemon.hitPoints - 1) + ": ");
+            System.out.println("Sorry. The attack level must be between 1 and " +
+                    (tempPokemon.hitPoints - 1) + ": ");
             attacklevel = myScan.nextInt();
         }
         tempPokemon.attackLevel = attacklevel;
@@ -95,7 +104,8 @@ public class Colosseum {
         System.out.println("Enter your defence level (1-" + defenselevelmax + "): ");
         int defenselevel = myScan.nextInt();
         while (defenselevel < 1 || defenselevel > defenselevelmax) {
-            System.out.println("Sorry. The attack level must be between 1 and " + defenselevelmax + ": ");
+            System.out.println("Sorry. The attack level must be between 1 and " +
+                    defenselevelmax + ": ");
             defenselevel = myScan.nextInt();
         }
         tempPokemon.defenseLevel = defenselevel;
